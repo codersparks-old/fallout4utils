@@ -1,10 +1,9 @@
 package com.github.codersparks.fallout4utils.controllers;
 
-import com.github.codersparks.fallout4utils.data.Session;
-import com.github.codersparks.fallout4utils.exception.SessionException;
-import com.github.codersparks.fallout4utils.interfaces.SessionService;
+import com.github.codersparks.fallout4utils.data.HackingSession;
+import com.github.codersparks.fallout4utils.exception.HackingSessionException;
+import com.github.codersparks.fallout4utils.interfaces.HackingSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/api/session")
-public class SessionController {
+public class HackingSessionController {
 
-    private final SessionService sessionService;
+    private final HackingSessionService hackingSessionService;
 
     @Autowired
-    public SessionController(SessionService sessionService) {
-        this.sessionService = sessionService;
+    public HackingSessionController(HackingSessionService hackingSessionService) {
+        this.hackingSessionService = hackingSessionService;
     }
 
     @RequestMapping(
@@ -32,9 +31,9 @@ public class SessionController {
             method = RequestMethod.GET,
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.TEXT_XML_VALUE}
     )
-    public ResponseEntity<Session> createSession() throws SessionException {
-        Session session = sessionService.createSession();
-        return new ResponseEntity<Session>(session, HttpStatus.CREATED);
+    public ResponseEntity<HackingSession> createSession() throws HackingSessionException {
+        HackingSession hackingSession = hackingSessionService.createHackingSession();
+        return new ResponseEntity<HackingSession>(hackingSession, HttpStatus.CREATED);
     }
 
     @RequestMapping(
@@ -43,9 +42,9 @@ public class SessionController {
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.TEXT_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.TEXT_XML_VALUE}
     )
-    public ResponseEntity<Session> updateSession(@RequestBody Session session) throws SessionException {
-        Session updatedSession = sessionService.updateSession(session);
+    public ResponseEntity<HackingSession> updateSession(@RequestBody HackingSession hackingSession) throws HackingSessionException {
+        HackingSession updatedHackingSession = hackingSessionService.updateHackingSession(hackingSession);
 
-        return new ResponseEntity<Session>(updatedSession, HttpStatus.OK);
+        return new ResponseEntity<HackingSession>(updatedHackingSession, HttpStatus.OK);
     }
 }

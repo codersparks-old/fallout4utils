@@ -14,15 +14,15 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ExceptionHandlerAdvice extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = {SessionAlreadyExistsException.class})
-    public ResponseEntity<Object> handleSessionAlreadyExistsException(SessionAlreadyExistsException ex, WebRequest request) {
-        String body = "Session already exists, check logs for stacktrace";
+    @ExceptionHandler(value = {HackingSessionAlreadyExistsException.class})
+    public ResponseEntity<Object> handleSessionAlreadyExistsException(HackingSessionAlreadyExistsException ex, WebRequest request) {
+        String body = "HackingSession already exists, check logs for stacktrace";
         return handleExceptionInternal(ex, body, new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 
-    @ExceptionHandler(value={SessionNotFoundException.class})
-    public ResponseEntity<Object> handleSessionNotFoundException(SessionNotFoundException ex, WebRequest request) {
-        String body = "Session already exists, check logs for stacktrace";
+    @ExceptionHandler(value={HackingSessionNotFoundException.class})
+    public ResponseEntity<Object> handleSessionNotFoundException(HackingSessionNotFoundException ex, WebRequest request) {
+        String body = "HackingSession already exists, check logs for stacktrace";
         return handleExceptionInternal(ex, body, new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 }

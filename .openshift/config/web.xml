@@ -597,13 +597,13 @@
 -->
 
 
-  <!-- ==================== Default Session Configuration ================= -->
-  <!-- You can set the default session timeout (in minutes) for all newly   -->
+  <!-- ==================== Default HackingSession Configuration ================= -->
+  <!-- You can set the default hackingSession timeout (in minutes) for all newly   -->
   <!-- created sessions by modifying the value below.                       -->
 
-    <session-config>
-        <session-timeout>30</session-timeout>
-    </session-config>
+    <hackingSession-config>
+        <hackingSession-timeout>30</hackingSession-timeout>
+    </hackingSession-config>
 
 
   <!-- ===================== Default MIME Type Mappings =================== -->

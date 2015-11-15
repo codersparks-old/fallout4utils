@@ -1,9 +1,9 @@
 package com.github.codersparks.fallout4utils;
 
-import com.github.codersparks.fallout4utils.interfaces.SessionService;
-import com.github.codersparks.fallout4utils.repository.SessionRepository;
-import com.github.codersparks.fallout4utils.serivce.SessionServiceImpl;
-import com.github.codersparks.fallout4utils.utils.SessionUtils;
+import com.github.codersparks.fallout4utils.interfaces.HackingSessionService;
+import com.github.codersparks.fallout4utils.repository.HackingSessionRepository;
+import com.github.codersparks.fallout4utils.serivce.HackingSessionServiceImpl;
+import com.github.codersparks.fallout4utils.utils.HackingSessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,15 +15,15 @@ import org.springframework.context.annotation.Configuration;
 public class RootConfig {
 
     @Autowired
-    private SessionRepository repository;
+    private HackingSessionRepository repository;
 
     @Bean
-    public SessionService sessionService() {
-        return new SessionServiceImpl(repository, sessionUtils());
+    public HackingSessionService sessionService() {
+        return new HackingSessionServiceImpl(repository, sessionUtils());
     }
 
     @Bean
-    public SessionUtils sessionUtils() {
-        return new SessionUtils();
+    public HackingSessionUtils sessionUtils() {
+        return new HackingSessionUtils();
     }
 }
