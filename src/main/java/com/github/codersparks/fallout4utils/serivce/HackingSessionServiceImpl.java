@@ -11,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 /**
  * Created by codersparks on 14/11/2015.
  */
@@ -45,18 +47,61 @@ public class HackingSessionServiceImpl implements HackingSessionService {
     }
 
     @Override
+    public HackingSession getHackingSession(String id) throws HackingSessionException {
+
+        logger.info("Attempting to get hacking session with id: " + id);
+        if(! repository.exists(id)) {
+            throw new HackingSessionNotFoundException("Cannot find hacking session with id: " + id);
+        }
+
+        return repository.findOne(id);
+    }
+
+    @Override
+    public List<HackingSession> getAllHackingSessions() throws HackingSessionException {
+
+        logger.info("Attempting to get all hacking sessions");
+
+        List<HackingSession> hackingSessions = repository.findAll();
+
+        return hackingSessions;
+    }
+
+    @Override
     public HackingSession updateHackingSession(HackingSession hackingSession) throws HackingSessionException {
 
         logger.info("Attempting to update hackingSession: " + hackingSession);
 
         // We want to check that it already exists
         if( ! repository.exists(hackingSession.getId())) {
-            throw new HackingSessionNotFoundException("Cannot find hackingSession with id: " + hackingSession.getId());
+            throw new HackingSessionNotFoundException("Cannot find hackingSession with id: " + hackingSession.getId() + " have you created it?");
         }
+
+        logger.debug("Canditates details map: " + hackingSession.getCandidateDetails());
 
         // We are now updating the repository
         HackingSession storedHackingSession = repository.save(hackingSession);
         return storedHackingSession;
+
+
+    }
+
+    @Override
+    public HackingSession updateCandidatesForHackingSession(List<String> candidates, String id) throws HackingSessionException {
+         logger.info("Updating candidate list for session with id: " + id + " values: " + candidates);
+
+        // Check that it already exists
+        if( ! repository.exists(id)) {
+            throw new HackingSessionNotFoundException("Cannot find hackingSession with id: " + id + " have you created it?");
+        }
+
+        HackingSession session = repository.findOne(id);
+
+        session.initialiseCandidates(candidates);
+
+        HackingSession savedSession = repository.save(session);
+
+        return savedSession;
 
 
     }

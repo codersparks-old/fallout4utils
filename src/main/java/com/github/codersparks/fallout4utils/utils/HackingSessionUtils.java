@@ -13,7 +13,7 @@ public class HackingSessionUtils {
         return new HackingSession();
     }
 
-    public HackingSession createSession(String id, List<String> wordCollection) {
-        return new HackingSession(id ,wordCollection);
+    public HackingSession createSession(String id) {
+        return new HackingSession(id);
     }
 }
