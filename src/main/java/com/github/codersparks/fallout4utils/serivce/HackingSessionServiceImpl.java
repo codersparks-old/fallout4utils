@@ -105,4 +105,10 @@ public class HackingSessionServiceImpl implements HackingSessionService {
 
 
     }
+
+    @Override
+    public void deleteSession(HackingSession session) {
+        logger.info("Deleting session: " + session.getId());
+        repository.delete(session);
+    }
 }

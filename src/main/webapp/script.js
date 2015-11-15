@@ -20,8 +20,15 @@ angularApp.config(function($routeProvider) {
         .when('/contact', {
             templateUrl : 'pages/contact.html',
             controller : 'contactController'
+        })
+
+        // route for the hacking page
+        .when('/hacking', {
+            templateUrl : 'pages/hacking.html',
+            controller : 'hackingController'
         });
 })
+
 
 
 
@@ -29,6 +36,11 @@ angularApp.config(function($routeProvider) {
 angularApp.controller('mainController', function($scope) {
     // Create a message for a view to display
     $scope.message = "Wow this is awesome";
+})
+
+angularApp.controller('hackingController', function($scope){
+    $scope.session = {"id":"asadsdfsd-asafs-a-sasfdd"}
+    $scope.sessionId = "sssaaa-aas-a-aafsdf";
 })
 
 angularApp.controller('aboutController', function($scope) {

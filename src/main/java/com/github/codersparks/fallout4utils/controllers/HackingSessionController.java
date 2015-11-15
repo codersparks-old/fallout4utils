@@ -112,5 +112,15 @@ public class HackingSessionController {
 
         return new ResponseEntity<HackingSession>(updateSession, HttpStatus.OK);
     }
+
+    @RequestMapping(
+            value="/{id}",
+            method=RequestMethod.DELETE
+    )
+    public ResponseEntity<String> deleteSession(@PathVariable String id) throws HackingSessionException {
+        HackingSession session = hackingSessionService.getHackingSession(id);
+        hackingSessionService.deleteSession(session);
+        return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
+    }
 }
 

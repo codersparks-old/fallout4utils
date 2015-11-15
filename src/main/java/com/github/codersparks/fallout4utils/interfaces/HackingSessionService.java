@@ -20,4 +20,6 @@ public interface HackingSessionService {
     HackingSession updateHackingSession(HackingSession hackingSession) throws HackingSessionException;
 
     HackingSession updateCandidatesForHackingSession(List<String> candidates,  String id) throws HackingSessionNotFoundException, HackingSessionException;
+
+    void deleteSession(HackingSession session);
 }
