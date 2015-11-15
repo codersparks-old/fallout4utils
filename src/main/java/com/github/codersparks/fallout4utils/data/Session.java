@@ -40,4 +40,31 @@ public class Session {
     public void setId(String id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Session{" +
+                "id='" + id + '\'' +
+                ", candidates=" + candidates +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Session session = (Session) o;
+
+        if (!getId().equals(session.getId())) return false;
+        return !(getCandidates() != null ? !getCandidates().equals(session.getCandidates()) : session.getCandidates() != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId().hashCode();
+        result = 31 * result + (getCandidates() != null ? getCandidates().hashCode() : 0);
+        return result;
+    }
 }

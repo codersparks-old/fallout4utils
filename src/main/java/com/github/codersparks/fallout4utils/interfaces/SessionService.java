@@ -9,4 +9,5 @@ import com.github.codersparks.fallout4utils.exception.SessionException;
 public interface SessionService {
 
     Session createSession() throws SessionException;
+    Session updateSession(Session session) throws SessionException;
 }
