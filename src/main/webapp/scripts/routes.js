@@ -1,8 +1,8 @@
-// We create the module and name it angularApp
-var angularApp = angular.module("angularApp",["ngRoute", "ngTagsInput"]);
 
 // configure our routes
 angularApp.config(function($routeProvider, $locationProvider) {
+
+    $locationProvider.html5Mode({enabled:true, requireBase: false})
 
     $routeProvider
         // route for the home page
@@ -27,9 +27,9 @@ angularApp.config(function($routeProvider, $locationProvider) {
         .when('/hacking', {
             templateUrl : 'pages/hacking.html',
             controller : 'hackingController'
-        });
+        })
+        .otherwise('/');
 
-    //$locationProvider.html5Mode(true);
 })
 
 

@@ -8,6 +8,15 @@ public class HackingSessionWordProperties {
     private int likeness = Integer.MAX_VALUE;
     private float averageLevenshteinDistance = Float.MAX_VALUE;
     private int sumLevenshteinDistance = Integer.MAX_VALUE;
+    private boolean possibleSolution = true;
+
+    public boolean isPossibleSolution() {
+        return possibleSolution;
+    }
+
+    public void setPossibleSolution(boolean possibleSolution) {
+        this.possibleSolution = possibleSolution;
+    }
 
     public int getLikeness() {
         return likeness;

@@ -2,37 +2,39 @@
 <!DOCTYPE html>
 <html ng-app="angularApp">
 <head>
-    <!-- SCROLLS -->
-    <!-- load bootstrap and fontawesome via CDN -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css"/>
-    <link rel="stylesheet" href="css/ng-tags-input.min.css"/>
-    <link rel="stylesheet" href="css/ng-tags-input.bootstrap.min.css"/>
+    <!--<link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap.min.css"/>-->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/webjars/font-awesome/4.5.0/css/font-awesome.css"/>
+    <link rel="stylesheet" href="/webjars/ng-tags-input/2.3.0/ng-tags-input.css"/>
+    <link rel="stylesheet" href="/webjars/ng-tags-input/2.3.0/ng-tags-input.bootstrap.css"/>
+    <link rel="stylesheet" href="css/site.css" />
 
-    <!-- SPELLS -->
-    <!-- load angular and angular route via CDN -->
+    <script src="/webjars/angularjs/1.4.8/angular.min.js"></script>
+    <script src="/webjars/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="/webjars/angular-ui-bootstrap/0.14.3/ui-bootstrap.min.js"></script>
+    <script src="/webjars/ng-tags-input/2.3.0/ng-tags-input.min.js">    </script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-    <script src="scripts/ng-tags-input.min.js"></script>
-    <script src="scripts/routes.js"></script>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/states.js"></script>
     <script src="scripts/controllers.js"></script>
 </head>
 <body ng-controller="mainController">
 
 <!-- HEADER AND NAVBAR -->
 <header>
-    <nav class="navbar navbar-default">
-        <div class="container">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">Fallout 4 Utils</a>
+                <a class="navbar-brand" href="/">
+                    <img height="50" width="50" alt="Fallout4Utils" src="images/fallout4.jpg">
+                </a>
             </div>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="hacking.html"><i class="fa fa-terminal"></i>Terminal Hacking</a></li>
-                <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
-                <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+                <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="hacking"><i class="fa fa-terminal"></i>Terminal Hacking</a></li>
+                <li><a href="about"><i class="fa fa-shield"></i> About</a></li>
             </ul>
         </div>
     </nav>
@@ -42,9 +44,7 @@
 <div id="main">
 
     <div class="controller">
-
-        <div ng-view></div>
-
+        <div ui-view></div>
     </div>
 </div>
 

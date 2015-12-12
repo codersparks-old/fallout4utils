@@ -82,6 +82,11 @@ public class HackingSession {
             // Now we loop again ignoring the candidate
             for(String comparison : propertiesMap.keySet()) {
 
+                if( ! propertiesMap.get(comparison).isPossibleSolution()) {
+                    logger.debug("Comparison: '" + comparison + "' has possible solution set to false, skipping");
+                    continue;
+                }
+
                 logger.debug("Calculating levenshtein distance for '" + comparison + "' against candidate: " + candidate);
 
                 if(comparison.equals(candidate)) {

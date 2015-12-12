@@ -1,33 +1,31 @@
 <!-- hacking.html -->
-<div class="page-header text-center">
-    <h1>Terminal Hacking Helper</h1>
+<div ng-controller="hackingController">
+    <div class="page-header text-center">
+        <h1>Terminal Hacking Helper</h1>
 
-    <p>Follow the below instructions to help resolve the password for a terminal</p>
+        <p>Follow the below instructions to help resolve the password for a terminal</p>
 
+    </div>
+    <div class="container">
+        <div ui-view>
 
-</div>
-<div class="container">
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Create new Session</h3>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" ng-model="Model.showSessionData" uib-btn-checkbox
+                        btn-checkbox-true=true btn-checkbox-false=false>
+                    Show Session Data
+                </button>
             </div>
-            <div class="panel-body">
-                <tags-input ng-model="tags"></tags-input>
+            <div class="col-md-10">
+                <div uib-collapse="! Model.showSessionData">
+                    <div class="well well-lg">
+                        Possible Solutions: {{ Model.possibleSolutions }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-<div class="row">
-    <div class="col-md-1 col-md-offset-2">
-        Session ID:
-    </div>
-    <div class="col-md-3">{{ sessionId }}</div>
-    <div class="col-md-1">Session:</div>
-    <div class="col-md-3">{{ session }}</div>
-
-</div>
-</div>
-<div class="panel">
-
 </div>

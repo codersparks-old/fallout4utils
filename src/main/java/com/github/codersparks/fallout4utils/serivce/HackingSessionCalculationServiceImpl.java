@@ -47,7 +47,13 @@ public class HackingSessionCalculationServiceImpl implements HackingSessionCalcu
         List<String> candidateValues = new ArrayList<>();
 
         for (String candidate : propertiesMap.keySet()) {
-            int sumDistance = propertiesMap.get(candidate).getSumLevenshteinDistance();
+            HackingSessionWordProperties candiateProperties = propertiesMap.get(candidate);
+
+            if( ! candiateProperties.isPossibleSolution()) {
+                logger.debug("Candidate '" + candidate + "' is not a possible solution skipping");
+            }
+
+            int sumDistance = candiateProperties.getSumLevenshteinDistance();
 
             if(propertiesMap.get(candidate).getLikeness() < candidate.length()) {
                 // we have obviously already checked this one so don't add it
@@ -85,6 +91,12 @@ public class HackingSessionCalculationServiceImpl implements HackingSessionCalcu
         // If they do not then we can remove them from the list
         for (String comparison : propertiesMap.keySet()) {
 
+            HackingSessionWordProperties comparisionProperties = propertiesMap.get(comparison);
+            if(! comparisionProperties.isPossibleSolution()) {
+                logger.debug("Comparison: '" + comparison + "' is marked as not possible solution, skipping...");
+                continue;
+            }
+
             logger.debug("Comparing '" + candidate + "' with candidate: " + comparison + "'");
 
             if (comparison.equalsIgnoreCase(candidate)) {
@@ -109,15 +121,10 @@ public class HackingSessionCalculationServiceImpl implements HackingSessionCalcu
 
             // Now we can remove if the commonchars are not equal to likeness
             if (totalMatches != likeness) {
-                logger.debug("Adding '" + comparison + "' to removal list as it does not have the same likeness");
-                removalList.add(comparison);
+                logger.debug("Updating '" + comparison + "' to no longer be a possible solution");
+                propertiesMap.get(comparison).setPossibleSolution(false);
             }
 
-        }
-
-        for(String removal : removalList) {
-            logger.debug("Removing: " + removal);
-            propertiesMap.remove(removal);
         }
 
         session.setCandidateDetails(propertiesMap);
