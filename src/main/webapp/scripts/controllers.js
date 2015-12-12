@@ -24,7 +24,8 @@ angularApp.controller('hackingController', function($scope, $http){
 
         $http.post('/api/session/', possibleSolutionsJson)
             .success(function successFunction(data) {
-                console.log("Success: " + data);
+                console.log("Success")
+                console.log(data);
             }).error(function errorFunction(data) {
                 console.log("Error: ")
                 console.log(data);
