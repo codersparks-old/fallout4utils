@@ -26,6 +26,7 @@ angularApp.controller('hackingController', function($scope, $http){
             .success(function successFunction(data) {
                 console.log("Success")
                 console.log(data);
+                $scope.Model.session = data;
             }).error(function errorFunction(data) {
                 console.log("Error: ")
                 console.log(data);

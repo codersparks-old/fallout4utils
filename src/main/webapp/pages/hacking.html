@@ -22,7 +22,12 @@
             <div class="col-md-10">
                 <div uib-collapse="! Model.showSessionData">
                     <div class="well well-lg">
-                        Possible Solutions: {{ Model.possibleSolutions }}
+                        <div class="row">
+                            Possible Solutions: {{ Model.possibleSolutions }}
+                        </div>
+                        <div class="row">
+                            Session: {{ Model.session }}
+                        </div>
                     </div>
                 </div>
             </div>
