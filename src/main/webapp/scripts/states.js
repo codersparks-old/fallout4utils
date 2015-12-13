@@ -24,7 +24,30 @@ angularApp.config(['$stateProvider', '$urlRouterProvider','$locationProvider',
             .state('hacking.entry', {
                 url: '/hacking',
                 templateUrl: 'pages/hacking/entry.html',
-                controller: 'hackingController'
+                controller: 'hackingController',
+                data: {
+                    createSessionEnabled: true,
+                    bestGuessEnabled: false,
+                    updateLikenessEnabled: false
+                }
+            })
+            .state('hacking.bestGuess', {
+                templateUrl: 'pages/hacking/bestGuess.html',
+                controller: 'hackingController',
+                data: {
+                    createSessionEnabled: true,
+                    bestGuessEnabled: true,
+                    updateLikenessEnabled: true
+                }
+            })
+            .state('hacking.updateLikeness', {
+                templateUrl: 'pages/hacking/updateLikeness.html',
+                controller: 'hackingController',
+                data: {
+                    createSessionEnabled: true,
+                    bestGuessEnabled: true,
+                    updateLikenessEnabled: true
+                }
             })
             .state("about", {
                 url: '/about',

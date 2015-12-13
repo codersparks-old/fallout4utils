@@ -9,3 +9,8 @@ tags-input .tags .tag-item   {
     border-color: rgba(188, 188, 188, 0.6);
     text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
 }
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}

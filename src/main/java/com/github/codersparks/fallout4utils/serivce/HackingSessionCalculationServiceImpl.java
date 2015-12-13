@@ -84,6 +84,8 @@ public class HackingSessionCalculationServiceImpl implements HackingSessionCalcu
 
         // first we update the likeness for the candidate that we have
         propertiesMap.get(candidate).setLikeness(likeness);
+        // Set it as not a possible solution
+        propertiesMap.get(candidate).setPossibleSolution(false);
 
         List<String> removalList = new ArrayList<>();
 

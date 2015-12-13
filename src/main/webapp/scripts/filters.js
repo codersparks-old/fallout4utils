@@ -3,4 +3,4 @@ angularApp.filter('prettyJSON', function(){
         return JSON ? JSON.stringify(json, null, '  ') : "Your Browser does not support JSON therefore cannot pretty print";
     }
     return prettyPrintJson;
-})
+});

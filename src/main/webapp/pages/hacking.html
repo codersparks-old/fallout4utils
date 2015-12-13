@@ -1,16 +1,125 @@
 <!-- hacking.html -->
 <div ng-controller="hackingController">
     <div class="page-header text-center">
-        <h1>Terminal Hacking Helper</h1>
+        <h1>Terminal Helper</h1>
 
-        <p>Follow the below instructions to help resolve the password for a terminal</p>
+        <p>In game there are terminals that require cracking, this helper will walk you through the process</p>
 
     </div>
+
+    <div class="container">
+        <div class="row">
+            <div>
+                <uib-alert ng-repeat="alert in Model.alerts" type="{{alert.type}}" close="Model.closeAlert($index)" dismiss-on-timeout="10000">
+                    {{alert.msg}}
+                </uib-alert>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Instructions <i ng-class="Model.instIconClass"
+                                                            ng-click="Model.collapseInstructions()"></i></h3>
+                </div>
+                <div class=" panel-body" uib-collapse="Model.instructionsCollapse">
+                    <div class="list-group">
+                        <li class="list-group-item" ng-class="Model.createSessionClass">
+                            <h4 class="list-group-item-heading"><b>Create Session</b></h4>
+                            <p class="list-group-item-text">
+                            <p>The create session step allows you to enter the potential passwords into the <em>Possible
+                                Passwords</em> input box</p>
+                            <p>Enter each password listed in the game seperating each one by a comma (,) or by pressing
+                                Enter - If successful the potential password will show as a tag within the input box</p>
+                            <p>Click on the "Create..." button to start the new session <b>Note:</b> This will override
+                                the last session (at the moment that session is stored in the DB but it is not possible
+                                to load old sessions at present</p>
+                            <p>Once you have clicked on create you will then move onto the next step (Calculate Best
+                                Guess)</p>
+                            </p>
+                        </li>
+                    </div>
+                    <div class="list-group">
+                        <li class="list-group-item" ng-class="Model.bestGuessClass">
+                            <h4 class="list-group-item-heading"><b>Calculate Best Guess</b></h4>
+                            <p class="list-group-item-text">
+                            <p>The calculate best guess stage will workout the best password to choose as the next
+                                guess</p>
+                            <p>To calculate the best guess click on "Generate..." and the best password(s) to choose
+                                will be displayed</p>
+                            <p><b>Note:</b> If the tool cannot calculate a single best guess it will list multiple, you
+                                will then need to choose one</p>
+                            <p>Once you have entered the word into the game terminal click on "Update Likeness"
+                                navigation button</p>
+                            </p>
+                        </li>
+                    </div>
+                    <div class="list-group">
+                        <li class="list-group-item" ng-class="Model.updateLikenessClass">
+                            <h4 class="list-group-item-heading"><b>Update Likeness</b></h4>
+                            <p class="list-group-item-text">
+                            <p>Using the form supplied, enter the password you guessed (in the game) and the likeness
+                                returned</p>
+                            <p>If a single best guess was found previously then it will be propogated through to the
+                                "Guessed password" field here, you are free to enter a different word</p>
+                            <p>Once you have entered the details, click on "Update..." and you will be returned to the
+                                best guess step</p>
+                            </p>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div ui-view>
 
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Possible Solutions for current session</h3>
+                </div>
+                <div class=" panel-body">
+                    <ul>
+                        <li ng-repeat="(key, value) in Model.session.candidateDetails" ng-if="value.possibleSolution">
+                            {{key}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="well container">
+        <div class="row vertical-align">
+            <div class="col-md-1">Navigation:</div>
+            <div class="col-md-2 text-center btn-group" style="width:100%">
+                <a class="btn btn-primary btn-block" ng-class="Model.createSessionClass"  ng-click="Model.updateState('hacking.entry')"
+                   ng-disabled="! Model.createSession">Create Session</a>
+            </div>
+            <div class="col-md-1 text-center">
+                <i class="fa fa-arrow-right fa-2x"></i>
+            </div>
+            <div class="col-md-2 btn-group" style="width:100%">
+                <a class="btn btn-primary btn-block" ng-class="Model.bestGuessClass" ng-click="Model.updateState('hacking.bestGuess')"
+                   ng-disabled="! Model.calculateBestGuess">Calculate Best Guess</a>
+            </div>
+            <div class="col-md-1">
+                <i class="fa fa-refresh fa-2x"></i>
+            </div>
+            <div class="col-md-2 btn-group" style="width:100%">
+                <a class="btn btn-primary btn-block" ng-class="Model.updateLikenessClass" ng-click="Model.updateState('hacking.updateLikeness')"
+                   ng-disabled="! Model.updateLikeness">Update Likeness</a>
+            </div>
+        </div>
+    </div>
+    <br/>
     <div class="container">
         <div class="row">
             <div class="col-md-2">

@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Generate Best Guess</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary" ng-click="Model.generateBestGuess(Model.session)">Generate</button>
+                    </div>
+                </div>
+            </form>
+            <div class="well">
+                <div ng-if="Model.bestGuess.length > 1">
+                    <ul>
+                        <li ng-repeat="item in Model.bestGuess">{{item}}</li>
+                    </ul>
+                </div>
+                <div ng-if="Model.bestGuess.length == 1">
+                    {{ Model.bestGuess[0] }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
