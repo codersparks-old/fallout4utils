@@ -1,9 +1,3 @@
 spring:
-  data:
-    mongodb:
-      host: ${OPENSHIFT_MONGODB_DB_HOST}
-      port: ${OPENSHIFT_MONGODB_DB_PORT}
-      username: ${OPENSHIFT_MONGODB_DB_USERNAME}
-      password: ${OPENSHIFT_MONGODB_DB_PASSWORD}
-      database: ${OPENSHIFT_APP_NAME}
-      uri: ${OPENSHIFT_MONGODB_DB_URL}
+  profiles:
+    active: OPENSHIFT
